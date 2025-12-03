@@ -2,7 +2,8 @@ package com.example.contohh.data.remote
 
 import com.google.gson.annotations.SerializedName
 
-// REQUESTS
+// =============== REQUESTS ===============
+
 data class LoginRequest(
     @SerializedName("id_token")
     val idToken: String,
@@ -13,14 +14,18 @@ data class LoginRequest(
 
 data class RegisterRequest(
     @SerializedName("id_token")
-    val idToken: String
+    val idToken: String,
+    val name: String,
+    val loginSource: String
 )
 
+// Kalau mau pakai untuk endpoint lain
 data class CompleteProfileRequest(
     val name: String
 )
 
-// RESPONSES DARI BACKEND
+// =============== RESPONSES ===============
+
 data class LoginResponse(
     val message: String,
     val token: String,

@@ -11,19 +11,21 @@ data class GenericResponse(
 
 interface ApiService {
 
+    // POST /api/login
     @POST("api/login")
     suspend fun loginGoogle(
         @Body body: LoginRequest
     ): Response<LoginResponse>
 
+    // POST /api/register
     @POST("api/register")
     suspend fun registerGoogle(
         @Body body: RegisterRequest
     ): Response<GenericResponse>
 
+    // POST /api/logout (dengan JWT di Authorization header)
     @POST("api/logout")
     suspend fun logout(
         @Header("Authorization") token: String
     ): Response<GenericResponse>
 }
-

@@ -11,48 +11,34 @@ import androidx.compose.ui.unit.dp
 fun CompleteProfileScreen(
     initialName: String? = null,
     onSubmit: (String) -> Unit,
-    onSkip: () -> Unit
 ) {
     var name by remember { mutableStateOf(initialName.orEmpty()) }
 
-    Box(
-        modifier = Modifier.fillMaxSize()
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(24.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
-        Column(
-            modifier = Modifier
-                .align(Alignment.Center)
-                .padding(24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+        Text("Lengkapi Nama", style = MaterialTheme.typography.headlineSmall)
+
+        Spacer(Modifier.height(16.dp))
+
+        OutlinedTextField(
+            value = name,
+            onValueChange = { name = it },
+            label = { Text("Nama Lengkap") },
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        Spacer(Modifier.height(24.dp))
+
+        Button(
+            onClick = { onSubmit(name) },
+            modifier = Modifier.fillMaxWidth()
         ) {
-            Text(
-                text = "Lengkapi Nama",
-                style = MaterialTheme.typography.headlineSmall
-            )
-
-            Spacer(Modifier.height(16.dp))
-
-            OutlinedTextField(
-                value = name,
-                onValueChange = { name = it },
-                label = { Text("Nama Lengkap") },
-                modifier = Modifier.fillMaxWidth()
-            )
-
-            Spacer(Modifier.height(24.dp))
-
-            Button(
-                onClick = { onSubmit(name) },
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text("Simpan")
-            }
-
-            TextButton(
-                onClick = { onSkip() },
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text("Lewati")
-            }
+            Text("Simpan")
         }
     }
 }
